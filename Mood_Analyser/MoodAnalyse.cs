@@ -17,6 +17,10 @@ namespace Mood_Analyser
             {  
                 return "HAPPY";
             }
+            else if (message.Contains("any"))
+            {
+                return "HAPPY";
+            }
             else
             {
                 return "SAD";

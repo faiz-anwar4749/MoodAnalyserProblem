@@ -15,5 +15,15 @@ namespace MoodAnalyserTest
             var result = mood.AnalyseMood();
             Assert.AreEqual(expected, result);
         }
+        [TestMethod]
+        [DataRow("I am in any mood.")]
+        public void TestMethod2(string message)
+        {
+            string expected = "HAPPY";
+            MoodAnalyse mood = new MoodAnalyse(message);
+            var result = mood.AnalyseMood();
+            Assert.AreEqual(expected, result);
+        }
+
     }
 }
