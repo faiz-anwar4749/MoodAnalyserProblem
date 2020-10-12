@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mood_Analyser;
-
 namespace MoodAnalyserTest
 {
     [TestClass]
@@ -13,18 +12,36 @@ namespace MoodAnalyserTest
         {
             string expected = "HAPPY";
             MoodAnalyse mood = new MoodAnalyse(message);
-            var result = mood.AnalyseMood();
+            var result = mood.AnalyseMood1();
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
-        public void TestMethod2()
+        public void Throw_MoodAnalysisException_Indicating_EmptyMood()
         {
-            string expected = "HAPPY";
-            MoodAnalyse moodAnalyse = new MoodAnalyse(null);
-
-            string mood = moodAnalyse.AnalyseMood();
-
-            Assert.AreEqual(expected, mood);
+            try
+            {
+                string message = string.Empty;
+                MoodAnalyse mood = new MoodAnalyse(message);
+                string moodStr = mood.AnalyseMood1();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be empty", e.Message);
+            }
+        }
+        [TestMethod]
+        public void Throw_MoodAnalysisException_Indicating_Null()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyse moodAnalyse = new MoodAnalyse(message);
+                string mood = moodAnalyse.AnalyseMood1();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be null.", e.Message);
+            }
         }
     }
 }

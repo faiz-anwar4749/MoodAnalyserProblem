@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Mood_Analyser
 {
     public class MoodAnalyse
@@ -11,27 +10,27 @@ namespace Mood_Analyser
         {
             this.message = message;
         }
-        public string AnalyseMood()
+        public string AnalyseMood1()
         {
-           try
-           {
-                if (message.Contains("happy"))
+            try
+            {
+                if (this.message.Equals(string.Empty))
                 {
-                    return "HAPPY";
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
                 }
+                if (this.message.Contains("happy"))
+                    return "HAPPY";
                 else if (message.Contains("any"))
                 {
                     return "HAPPY";
                 }
                 else
-                {
                     return "SAD";
-                }
-           }
-           catch
-           {
-                return "HAPPY";
-           }
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be null.");
+            }
         }
     }
 }
