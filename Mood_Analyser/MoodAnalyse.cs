@@ -13,18 +13,25 @@ namespace Mood_Analyser
         }
         public string AnalyseMood()
         {
-            if (message.Contains("happy"))
-            {  
+           try
+           {
+                if (message.Contains("happy"))
+                {
+                    return "HAPPY";
+                }
+                else if (message.Contains("any"))
+                {
+                    return "HAPPY";
+                }
+                else
+                {
+                    return "SAD";
+                }
+           }
+           catch
+           {
                 return "HAPPY";
-            }
-            else if (message.Contains("any"))
-            {
-                return "HAPPY";
-            }
-            else
-            {
-                return "SAD";
-            }
+           }
         }
     }
 }
